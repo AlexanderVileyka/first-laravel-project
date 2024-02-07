@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Category\CategoryStoreRequest;
-use App\Models\Category;
+use App\Http\Requests\Comment\CommentStoreRequest;
+use App\Models\Comment;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
@@ -11,14 +11,14 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): Collection
     {
-        return Category::all();
+        return Comment::all();
     }
 
     /**
@@ -26,46 +26,47 @@ class CategoryController extends Controller
      */
     public function create(): View|Application|Factory
     {
-        return view('categories.create');
+        return view('comments.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryStoreRequest $request): Category
+    public function store(CommentStoreRequest $request): Comment
     {
-$data = $request->validated();
+        $data = $request->validated();
 
         $image = $data['poster'];
         $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
         $image->move(
-            storage_path() . '/app/public/categories/posters',
+            storage_path() . '/app/public/comments/posters',
             $imageName
         );
 
-$category = new Category();
+        $comment = new Comment();
 
-$category->name = $data ['name'];
-$category->poster = $imageName;
+        $comment->name = $data ['name'];
+        $comment->content = $data ['content'];
+        $comment->poster = $imageName;
 
-$category->save();
+        $comment->save();
 
-return $category;
+        return $comment;
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Comment $comment): Comment
     {
-        //
+        return $comment;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -73,7 +74,7 @@ return $category;
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -81,8 +82,8 @@ return $category;
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category): ?bool
+    public function destroy(Comment $comment): ?bool
     {
-        return $category->delete();
+        return $comment->delete();
     }
 }

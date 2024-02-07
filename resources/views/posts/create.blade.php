@@ -1,8 +1,5 @@
+<form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
 @csrf
-
-<label action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
-
-</label>
     <label>
         Название
         <input type='text' name="name" placeholder="название поста" required>
