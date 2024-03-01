@@ -21,7 +21,7 @@ class PostController extends Controller
     {
         $posts = Post::with('categories')->get();
 
-        return view('posts.index',compact('posts'));
+        return view('index',compact('posts'));
     }
 
     /**
@@ -68,9 +68,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post): Post
+    public function show(Post $post): View|Application|Factory
     {
-        return $post;
+        return view('posts.show', compact('post'));
     }
 
     /**

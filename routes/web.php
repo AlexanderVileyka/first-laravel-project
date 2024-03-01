@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Category;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
@@ -17,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class,'index']);
 
 Route::get('/test-route', function () {
     return 'Тестовый роут';
