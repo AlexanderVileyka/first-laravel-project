@@ -18,7 +18,7 @@ class CategoryResource extends ModelResource
 {
     protected string $model = Category::class;
 
-    protected string $title = 'Категории';
+    protected string $title = 'Categories';
 
     public function fields(): array
     {
