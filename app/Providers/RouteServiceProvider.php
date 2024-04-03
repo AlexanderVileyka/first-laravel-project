@@ -1,36 +1,40 @@
 <?php
 
-declare(strict_types=1);
+namespace App\Providers;
 
-namespace App\MoonShine\Resources;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Route;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Category;
-
-use MoonShine\Resources\ModelResource;
-use MoonShine\Decorations\Block;
-use MoonShine\Fields\ID;
-
-/**
- * @extends ModelResource<Category>
- */
-class CategoryResource extends ModelResource
+class RouteServiceProvider extends ServiceProvider
 {
-    protected string $model = Category::class;
+    /**
+     * The path to your application's "home" route.
+     *
+     * Typically, users are redirected here after authentication.
+     *
+     * @var string
+     */
+    public const HOME = '/dashboard';
 
-    protected string $title = 'Категории';
-
-    public function fields(): array
+    /**
+     * Define your route model bindings, pattern filters, and other route configuration.
+     */
+    public function boot(): void
     {
-        return [
-            Block::make([
-                ID::make()->sortable(),
-            ]),
-        ];
-    }
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
 
-    public function rules(Model $item): array
-    {
-        return [];
+        $this->routes(function () {
+            Route::middleware('api')
+                ->prefix('api')
+                ->group(base_path('routes/api.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+        });
     }
 }
