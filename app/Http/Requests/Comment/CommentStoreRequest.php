@@ -23,11 +23,10 @@ class CommentStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'       => 'required|string|min:3|max:25',
-            'email'      => 'required|email',
-            'message'    => 'required|string|min:2',
-            'post_id'    => 'required|integer',
-
+            'name' => 'required|string|min:3|max:25',
+            'email' => 'required|email',
+            'message' => 'required|string|min:3',
+            'post_id' => 'required|integer',
         ];
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
-
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Relationships\BelongsToMany;
 use MoonShine\Fields\Slug;
@@ -30,25 +30,28 @@ class PostResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
-                Text::make('Название','name')
+                Text::make('Название', 'name')
                     ->required()
                     ->sortable(),
-                Slug::make('Читаемая ссылка','slug')
+                Slug::make('Читаемая ссылка', 'slug')
                     ->unique()
                     ->from('name')
-                    ->hint('Заполнится автоматически,если оставить пустым'),
-                TinyMce::make('Краткое описание','description')
+                    ->hint('Заполниться автоматически, если оставить пустым'),
+                TinyMce::make('Краткое описание', 'description')
                     ->hideOnIndex(),
-                TinyMce::make('Текст','content')
+                TinyMce::make('Текст', 'content')
                     ->required()
                     ->hideOnIndex(),
-                Image::make('Картинка','poster')
+                Image::make('Картинка', 'poster')
                     ->required()
+                    ->dir('posts/posters')
+                    ->removable()
                     ->hideOnIndex(),
-              BelongsToMany::make('Категории','categories',resource:new CategoryResource())
+                BelongsToMany::make('Категории', 'categories', resource: new CategoryResource())
                     ->selectMode()
-                    ->placeholder('Кликните и начните ввод')
-                    ->inLine(badge:true),
+                    ->placeholder('Кликните или начните ввод для поиска')
+                    ->inLine(badge: true),
+
             ]),
         ];
     }

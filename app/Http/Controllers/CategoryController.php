@@ -18,15 +18,17 @@ class CategoryController extends Controller
      */
     public function index(): Collection
     {
+//        return Category::query()->with('posts')->all();
         return Category::all();
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View|Application|Factory
+    public function create(): Factory|Application|View
     {
         return view('categories.create');
+
     }
 
     /**
@@ -34,32 +36,31 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request): Category
     {
-$data = $request->validated();
+        $data = $request->validated();
 
-        $image = $data['poster'];
+        $image = $data ['poster'];
         $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
         $image->move(
             storage_path() . '/app/public/categories/posters',
             $imageName
         );
 
-$category = new Category();
+        $category = new Category();
 
-$category->name = $data ['name'];
-$category->poster = $imageName;
+        $category->name = $data['name'];
+        $category->poster = $imageName;
 
-$category->save();
+        $category->save();
 
-return $category;
-
+        return $category;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Category $category): Category
     {
-        //
+        return $category;
     }
 
     /**

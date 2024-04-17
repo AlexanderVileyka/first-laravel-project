@@ -5,70 +5,48 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <title>Категории</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('assets/css/style-categories.css') }}">
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>
-            <a href="#">
-                <img src="https://tfgms.com/sandbox/dailyui/logo-1.png" alt="Authentic Collection">
-            </a>
-        </h1>
-    </header>
-    <h1 class="text-center">Register</h1>
+<div class="demo form-bg">
+    <div class="container">
+        <div class=row">
+            <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+                <div class="form-container">
+                    <form action="{{ route('categories.store') }}" class="form-horizontal" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label>
+                                <span class="title-span">Название</span>
+                                <input class="form-label" type="text" name="name" placeholder="название поста" required>
+                            </label>
+                        </div>
 
-    <form class="registration-form" action="{{route('categories.store')}}" method="post" enctype="multipart/form-data">
-        @csrf
-        <label class="col-one-half">
-            <span class="label-text">Название</span>
-            <input type="text" name="name" id="name" required>
-        </label>
-        <label class="col-one-half">
-            <span class="label-text">Постер</span>
-            <input type="file" name="poster" id="poster" required>
-        </label>
-        <button class="submit" type="submit">
-            <span>Сохранить</span>
-        </button>
-    </form>
+                        <div class="form-group">
+                            <label>
+                                <span class="title-span">Постер</span>
+                                <input class="form-label" type="file" name="poster" id="poster" required>
+                            </label>
+                        </div>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src="{{ asset("assets/js/create.js") }}"></script>
+                        <button class="btn signup" type="submit">
+                            <span>Сохранить</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 </html>
-____________________________________________________
 
-
-
-{{--<form class="registration-form">--}}
-{{--    <label class="col-one-half">--}}
-{{--        <span class="label-text">First Name</span>--}}
-{{--        <input type="text" name="firstName">--}}
-{{--    </label>--}}
-{{--    <label class="col-one-half">--}}
-{{--        <span class="label-text">Last Name</span>--}}
-{{--        <input type="text" name="lastName">--}}
-{{--    </label>--}}
-{{--    <label>--}}
-{{--        <span class="label-text">Email</span>--}}
-{{--        <input type="text" name="email">--}}
-{{--    </label>--}}
-{{--    <label class="password">--}}
-{{--        <span class="label-text">Password</span>--}}
-{{--        <button class="toggle-visibility" title="toggle password visibility" tabindex="-1">--}}
-{{--            <span class="glyphicon glyphicon-eye-close"></span>--}}
-{{--        </button>--}}
-{{--        <input type="password" name="password">--}}
-{{--    </label>--}}
-{{--    <label class="checkbox">--}}
-{{--        <input type="checkbox" name="newsletter">--}}
-{{--        <span>Sign me up for the weekly newsletter.</span>--}}
-{{--    </label>--}}
-{{--    <div class="text-center">--}}
-{{--        <button class="submit" name="register">Sign Me Up</button>--}}
-{{--    </div>--}}
-{{--</form>--}}

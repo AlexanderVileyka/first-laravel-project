@@ -2045,16 +2045,16 @@
         },
         {
             "name": "moonshine/moonshine",
-            "version": "2.10.6",
+            "version": "2.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moonshine-software/moonshine.git",
-                "reference": "dcfae2bccec5e0943ceec108fdddddd89d1a4a2f"
+                "reference": "709d71e8d491fe33c40d8e25921e2198410201c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moonshine-software/moonshine/zipball/dcfae2bccec5e0943ceec108fdddddd89d1a4a2f",
-                "reference": "dcfae2bccec5e0943ceec108fdddddd89d1a4a2f",
+                "url": "https://api.github.com/repos/moonshine-software/moonshine/zipball/709d71e8d491fe33c40d8e25921e2198410201c7",
+                "reference": "709d71e8d491fe33c40d8e25921e2198410201c7",
                 "shasum": ""
             },
             "require": {
@@ -2130,7 +2130,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-04-03T06:17:58+00:00"
+            "time": "2024-03-31T08:29:33+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -6204,16 +6204,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.29.0",
+            "version": "v1.29.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "f4c4cb2197cd96a3d8a913c7b8437291d8bde5af"
+                "reference": "22c53b84b7fff91b01a318d71a10dfc251e92849"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/f4c4cb2197cd96a3d8a913c7b8437291d8bde5af",
-                "reference": "f4c4cb2197cd96a3d8a913c7b8437291d8bde5af",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/22c53b84b7fff91b01a318d71a10dfc251e92849",
+                "reference": "22c53b84b7fff91b01a318d71a10dfc251e92849",
                 "shasum": ""
             },
             "require": {
@@ -6262,7 +6262,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2024-02-21T14:14:23+00:00"
+            "time": "2024-03-04T14:35:21+00:00"
         },
         {
             "name": "laravel/pint",

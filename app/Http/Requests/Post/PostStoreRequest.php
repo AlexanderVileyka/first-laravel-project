@@ -25,10 +25,10 @@ class PostStoreRequest extends FormRequest
         return [
             'name'           => 'required|string|min:3|max:25',
             'description'    => 'string|min:3|max:25',
-            'content'        => 'string|min:10',
+            'content'        => 'required|string|min:10',
             'poster'         => 'required|image:jpg,jpeg,png|max:10240',
             'category_ids'   => 'array',
-            'category_ids.*' => 'integer',
-        ];
+            'category_ids.*' => 'integer'
+            ];
     }
 }

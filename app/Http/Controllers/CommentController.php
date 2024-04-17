@@ -6,10 +6,11 @@ use App\Http\Requests\Comment\CommentStoreRequest;
 use App\Models\Comment;
 use Illuminate\Http\RedirectResponse;
 
+
 class CommentController extends Controller
 {
     /**
-     * Store a newly created resource in storage
+     * Store a newly created resource in storage.
      */
     public function store(CommentStoreRequest $request): RedirectResponse
     {
@@ -28,9 +29,10 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment): RedirectResponse
     {
         $comment->delete();
+
         return redirect()->back();
     }
 }

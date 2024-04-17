@@ -30,14 +30,14 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     {
         return [
             MenuGroup::make(static fn() => __('moonshine::ui.resource.system'), [
-                MenuItem::make(
-                    static fn() => __('moonshine::ui.resource.admins_title'),
-                    new MoonShineUserResource()
-                ),
-                MenuItem::make(
-                    static fn() => __('moonshine::ui.resource.role_title'),
-                    new MoonShineUserRoleResource()
-                ),
+               MenuItem::make(
+                   static fn() => __('moonshine::ui.resource.admins_title'),
+                   new MoonShineUserResource()
+               ),
+               MenuItem::make(
+                   static fn() => __('moonshine::ui.resource.role_title'),
+                   new MoonShineUserRoleResource()
+               ),
             ]),
             MenuGroup::make('Статьи', [
                 MenuItem::make('Посты', new PostResource())

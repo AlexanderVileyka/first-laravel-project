@@ -35,9 +35,9 @@
                         </div>
 
                         <div class="blog-post-des">
-                            {{ $post->deiscrption }}
+                            {!! $post->description !!}
                         </div>
-
+                        {!! $post->content !!}
                         <div class="blog-author">
                             <div class="media">
                                 <div class="media-object pull-left">
@@ -70,34 +70,33 @@
                                             @else
                                                 <span>{{$comment->created_at->translateFormat('j F Y') }}</span>
                                             @endif
-                                            <p>{{$comment->content}}</p>
-                                            <form action="{{ route('comments.destroy', $comment->id) }}"
-                                                  method="post"
-                                                  onsubmit="return confirm('Вы уверены?');"
-                                                  >
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"><i class="fa fa-trash"></i> Удалить</button>
-                                            </form>
+                                            {!! $comment->content !!}
                                         </div>
+                                        <form action="{{ route('comments.destroy', $comment->id) }}" method="post"
+                                              onsubmit="return confirm('Вы уверены?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"><i class="fa fa-trash"> Удалить</i></button>
+                                        </form>
                                     </div>
                                 @endforeach
                             </div>
                         @endif
                     </div>
 
+
                     <div class="blog-comment-form">
                         <h3>Оставить комментарий</h3>
-                        <form action="{{route('comments.store') }}" method="post">
+                        <form action="{{ route('comments.store') }}" method="post">
                             @csrf
-                            <input type="hidden" name="post_id" value="{{$post->id}}">
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
                             <input type="text" class="form-control" placeholder="Name" name="name" required>
                             <input type="email" class="form-control" placeholder="Email" name="email" required>
                             <textarea name="message" rows="5" class="form-control" id="message" placeholder="Message"
                                       message="message" required="required"></textarea>
                             <div class="col-md-3 col-sm-4">
                                 <input name="submit" type="submit" class="form-control" id="submit"
-                                       value="Оставить комментарий">
+                                       value="Отправить комментарий">
                             </div>
                         </form>
                     </div>
@@ -107,7 +106,7 @@
     </section>
     <style>
         .main-single-post {
-            background: url({{ asset('storage/posts/posters/' . $post->poster) }}) no-repeat;
+            background: url({{ asset('storage/' . $post->poster) }}) no-repeat;
         }
     </style>
 @endsection

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 
 use MoonShine\Fields\Image;
+
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
@@ -32,7 +33,7 @@ class CategoryResource extends ModelResource
                 Text::make('Название', 'name')
                     ->required()
                     ->sortable(),
-                Image::make('Картинка','poster')
+                Image::make('Картинка', 'poster')
                     ->required()
                     ->hideOnIndex(),
             ]),

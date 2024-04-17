@@ -21,7 +21,7 @@ class PostController extends Controller
     {
         $posts = Post::with('categories')->get();
 
-        return view('index',compact('posts'));
+        return view('index', compact('posts'));
     }
 
     /**
@@ -30,7 +30,8 @@ class PostController extends Controller
     public function create(): View|Application|Factory
     {
         $categories = Category::all();
-        return view('posts.create',['categories' => $categories]);
+
+        return view('posts.create', ['categories' => $categories]);
     }
 
     /**
@@ -38,37 +39,37 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request): Post
     {
-     $data = $request->validated();
+        $data = $request->validated();
 
-     $image = $data['poster'];
-     $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
-     $image->move(
-         storage_path() . '/app/public/posts/posters',
-         $imageName
-     );
+        $image = $data ['poster'];
+        $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
+        $image->move(
+            storage_path() . '/app/public/posts/posters',
+            $imageName
+        );
 
-     $post = new Post();
+        $post = new Post();
 
-     $post->name        = $data['name'];
-     $post->description = $data['description']?? null;
-     $post->content     = $data['content'];
-     $post->poster      = $imageName;
+        $post->name = $data['name'];
+        $post->description = $data['description'] ?? null;
+        $post->content = $data['content'];
+        $post->poster = $imageName;
 
-     $post->save();
+        $post->save();
 
-     if (array_key_exists('category_ids',$data)) {
-         $post->categories()->attach($data['category_ids']);
-     }
+        if (array_key_exists('category_ids', $data)) {
+            $post->categories()->attach($data['category_ids']);
+        }
 
-     $post->load('categories');
+        $post->load('categories');
 
-     return $post;
+        return $post;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post): View|Application|Factory
+    public function show(Post $post): Application|Factory|View
     {
         return view('posts.show', compact('post'));
     }
@@ -94,6 +95,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post): ?bool
     {
-        return$post->delete();
+        return $post->delete();
     }
 }
